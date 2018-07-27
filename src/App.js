@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
   render() {
     return (
-     <div>
-            <div className="top-bar">
-                <span className="lines"></span>
-            </div>
+     <div className="container">
+           
             <div className="sidebar">
                 <h2>
                     Dina's Locations
@@ -34,6 +31,9 @@ class App extends Component {
                 </ul>
             </div>
             <div className="main-content">
+                 <div className="top-bar">
+                <span className="lines"></span>
+            </div>
             </div>
      </div>
     );
