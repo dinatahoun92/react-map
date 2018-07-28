@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import {GoogleApiWrapper} from 'google-maps-react';
+import MapContainer from './MapContainer'
 
 class App extends Component {
   render() {
@@ -8,8 +10,8 @@ class App extends Component {
           document.getElementById("sidenav").classList.toggle("open");
         document.getElementById("top-bar").classList.toggle("open-width");
          document.getElementById("top-bar").classList.toggle("close-width");
-
-
+          document.getElementById("MapStyle").classList.toggle("MapWidth-full");
+         document.getElementById("MapStyle").classList.toggle("MapWidth");
       }
     return (
      <div className="container">
@@ -38,16 +40,17 @@ class App extends Component {
                     </li>
                 </ul>
             </div>
-            <div className="main-content">
+            <div className="main-content" id="MapStyle">
                  <div className="top-bar close-width" id="top-bar">
                      <div className="outerLines" onClick={toggle}>
                 <span className="lines" ></span>
                          </div>
             </div>
+                <MapContainer/>
             </div>
      </div>
     );
   }
 }
-
 export default App;
+
