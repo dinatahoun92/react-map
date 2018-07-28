@@ -5,6 +5,18 @@ import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 export class MapContainer extends Component {
 
 state = {
+     locations: [
+      {name: "spectra", 
+       Location: {lat: 30.7945609, lng: 30.9968792}},
+      {name: "stereo",
+       Location: {lat: 30.7934103, lng: 31.0028939}},
+      {name: "macdonalds",
+       Location: {lat: 30.7904377, lng: 30.998936}},
+      {name: "Tarbous",
+         Location: {lat: 30.7945609, lng:31.0012534}},
+      {name: "Pizza hut",
+         Location: {lat: 30.7929998, lng: 30.9983131}}
+    ],
     showingInfoWindow: false,
     activeMarker: {},
     selectedPlace: {},
@@ -28,8 +40,9 @@ state = {
   
   render() {
 
-
+console.log(this.state.locations[0].name)
     return (
+        
 <Map
           google={this.props.google}
           className="MapWidth"
@@ -39,32 +52,15 @@ state = {
             lng: 31.0012534
         }}
     >
-        <Marker
-    title={'The marker`s title will appear as a tooltip.'}
-    name={'spectra'}
-    onClick={this.onMarkerClick}
-    position={{lat: 30.7945609, lng: 30.9968792}} />
-  <Marker
-    name={'stereo'}
-     onClick={this.onMarkerClick}
-    position={{lat: 30.7934103, lng: 31.0028939}} />
-  <Marker />
-    <Marker
-    title={'The marker`s title will appear as a tooltip.'}
-    name={'macdonalds'}
-     onClick={this.onMarkerClick}
-    position={{lat: 30.7904377, lng: 30.998936}} />
-     <Marker
-     name={'arabia cafe'}
-     onClick={this.onMarkerClick}
-    position={{lat:30.7945609, lng: 31.0012534}} />
-  <Marker />
-  <Marker
-    name={'Pizza hut'}
-     onClick={this.onMarkerClick}
-    position={{lat: 30.7929998, lng: 30.9983131}} />
-  <Marker />
-     
+
+   
+      {this.state.locations.map(function(item){
+        
+       return (<Marker onClick={this.onMarkerClick.bind(this)} key={item.name} name={item.name} position={item.Location}/>)
+     }.bind(this))}
+  
+        
+    
      <InfoWindow
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}>
