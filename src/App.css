@@ -129,6 +129,7 @@ ul li:hover{
      width: calc(100% + 250px);
 
 }
+    
 }
 /*end media query*/
 /*start MapWidth*/
@@ -140,7 +141,7 @@ ul li:hover{
   
     width: 100% !important;
 }
-.MapWidth{
+.{
      height: calc(100vh - 69px) !important;
     width: 100% !important;
 }
