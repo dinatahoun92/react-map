@@ -14,16 +14,27 @@ var params = {
 };
 
 class App extends Component {
-    state = {
-        items: []
-    };
+   constructor(props){
+    super(props);
+        
+    this.state={
+        items: [],
+        search: ''
+      }
+     this.onchange = this.onchange.bind(this)
+}
   componentDidMount() {    
     foursquare.venues.getVenues(params)
       .then(res=> {
         this.setState({ items: res.response.venues });
       });
   }
+   onchange = function(e){
+       this.setState({search: e.target.value})
+       console.log(this.state.search)
+   }
   render() {
+      
          var newItems = this.state.items.slice(1, 7);
       var toggle = ()=> {
           document.getElementById("sidenav").classList.toggle("close");
@@ -33,6 +44,8 @@ class App extends Component {
           document.getElementById("MapStyle").classList.toggle("MapWidth-full");
          document.getElementById("MapStyle").classList.toggle("MapWidth");
       }
+   
+ 
     return (
      <div className="container">
            
@@ -40,19 +53,25 @@ class App extends Component {
                 <h2>
                     Dina's Locations
                 </h2>
-                <input type="text" placeholder="type to filter">
+                <input type="text" placeholder="type to filter" value={this.state.search} onChange={this.onchange}>
                 </input>
-                  {newItems.map(function(locs){
+                   <ul>
+                   
+                  {newItems.filter(locs => {
+                           return(
+                           locs.name.indexOf(this.state.search) >= 0
+                           )
+                       }).map(function(locs, index){
                     return (
-                <ul>
-                <li>
+              
+                <li key={index}>
                     {locs.name}
                 </li>
                    
-                </ul>
+                
                         )
      })}
-  
+  </ul>
             </div>
             <div className="main-content" id="MapStyle">
                  <div className="top-bar close-width" id="top-bar">

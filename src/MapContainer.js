@@ -14,14 +14,20 @@ var params = {
 
 export class MapContainer extends Component {
 
-state = {
+    constructor(props){
+    super(props);
+        
+    this.state={
     showingInfoWindow: false,
     activeMarker: {},
     selectedPlace: {},
       error: null,
       isLoaded: false,
       items: []
-  };
+    }
+        
+}
+
     onMarkerClick = (props, marker, e) =>
     this.setState({
       selectedPlace: props,
@@ -46,7 +52,7 @@ state = {
 
   render() {
    var newItems = this.state.items.slice(1, 7);
- console.log(this.state.items)
+
 
     return (
         <div>
@@ -66,7 +72,7 @@ state = {
    
       {newItems.map(function(locs){
         
-       return (<Marker onClick={this.onMarkerClick.bind(this)} key={locs.id} name={locs.name} position={locs.location}/>)
+       return (<Marker onClick={this.onMarkerClick.bind(this)} key={locs.id} name={locs.location.formattedAddress} position={locs.location}/>)
      }.bind(this))}
   
         
