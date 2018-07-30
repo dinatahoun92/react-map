@@ -7,7 +7,7 @@ var foursquare = require('react-foursquare')({
   clientSecret: 'TBPLP5320XBMDYOH2HA4RHRSEVGL5WYC5L3O5O4OTYD4O1GZ'  
 });
 var params = {
-  "ll": " 30.7945609,30.9968792",
+  "ll": "41.9028,12.4964",
 
 };
 
@@ -15,18 +15,6 @@ var params = {
 export class MapContainer extends Component {
 
 state = {
-     locations: [
-      {name: "spectra", 
-       Location: {lat: 30.7945609, lng: 30.9968792}},
-      {name: "stereo",
-       Location: {lat: 30.7934103, lng: 31.0028939}},
-      {name: "macdonalds",
-       Location: {lat: 30.7904377, lng: 30.998936}},
-      {name: "Tarboush",
-         Location: {lat: 30.7945609, lng:31.0012534}},
-      {name: "Pizza hut",
-         Location: {lat: 30.7929998, lng: 30.9983131}}
-    ],
     showingInfoWindow: false,
     activeMarker: {},
     selectedPlace: {},
@@ -68,10 +56,10 @@ state = {
 <Map
           google={this.props.google}
           className="MapWidth"
-        zoom={16}
-        initialCenter={{
-            lat: 30.7945609,
-            lng: 31.0012534
+            zoom={16}
+            initialCenter={{
+            lat: 41.9028,
+            lng: 12.4964
         }}
     >
 
