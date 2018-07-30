@@ -57,22 +57,13 @@ state = {
   }
 
   render() {
-   
+   var newItems = this.state.items.slice(1, 7);
  console.log(this.state.items)
 
     return (
         <div>
             
-             <div>
-        <div>Items:</div>
-        { this.state.items.map(item=> {
-                     if(30.795819996495517=== item.location.lat){
-                     return( <div key={item.id}>{item.name}</div>
-                     
-                     )
-                 }
-                 }) }
-    </div>
+           
         
 <Map
           google={this.props.google}
@@ -85,9 +76,9 @@ state = {
     >
 
    
-      {this.state.locations.map(function(locs){
+      {newItems.map(function(locs){
         
-       return (<Marker onClick={this.onMarkerClick.bind(this)} key={locs.name} name={locs.name} position={locs.Location}/>)
+       return (<Marker onClick={this.onMarkerClick.bind(this)} key={locs.id} name={locs.name} position={locs.location}/>)
      }.bind(this))}
   
         
