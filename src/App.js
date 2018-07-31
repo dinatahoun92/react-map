@@ -20,10 +20,11 @@ class App extends Component {
     this.state={
         items: [],
         search: '',
+        inputChanged:false
         
       }
      this.onchange = this.onchange.bind(this);
-       this.setState 
+        
   
 }
 
@@ -38,6 +39,7 @@ class App extends Component {
       
    onchange = function(e){
        this.setState({search: e.target.value})
+       this.setState({inputChanged: true})
        console.log(this.state.search)
    }
   render() {
@@ -90,7 +92,7 @@ class App extends Component {
                        
                          
             </div>
-                <MapContainer locationList={this.state.items} search={this.search}/>
+                <MapContainer locationList={this.state.items} searchInput={this.inputChanged} searchList={this.state.search}/>
             </div>
      </div>
     );

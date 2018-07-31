@@ -57,10 +57,11 @@ export class MapContainer extends Component {
             lng: 12.4964
         }}
     >
-
-   
-      {this.props.locationList.map(function(locs){
-        
+      {this.props.locationList.filter(locs => {
+                           return(
+                           locs.name.indexOf(this.props.searchList) >= 0
+                           )
+                       }).map(function(locs){
        return (<Marker onClick={this.onMarkerClick.bind(this)} key={locs.id} name={locs.location.formattedAddress} position={locs.location} animation={this.props.google.maps.Animation.DROP}/>)
      }.bind(this))}
   
