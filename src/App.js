@@ -33,6 +33,7 @@ class App extends Component {
         this.setState({ items: res.response.venues });
         this.setState({ items:this.state.items.slice(1, 8) });
       });
+      
   }
       
    onchange = function(e){
@@ -54,7 +55,9 @@ class App extends Component {
  
     return (
      <div className="container">
-           
+           <div className="foursquare">
+               Powerd by foursquare
+           </div>
             <div className="sidebar open" id="sidenav">
                 <h2>
                     Dina's Locations
@@ -84,8 +87,10 @@ class App extends Component {
                      <div className="outerLines" onClick={toggle}>
                 <span className="lines" ></span>
                          </div>
+                       
+                         
             </div>
-                <MapContainer locationList={this.state.items}/>
+                <MapContainer locationList={this.state.items} search={this.search}/>
             </div>
      </div>
     );
