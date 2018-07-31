@@ -20,6 +20,7 @@ export class MapContainer extends Component {
     }
         
 }
+  
 
     onMarkerClick = (props, marker, e) =>
     this.setState({
@@ -40,7 +41,6 @@ export class MapContainer extends Component {
   
 
   render() {
-
 
 
     return (

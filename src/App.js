@@ -22,11 +22,12 @@ class App extends Component {
         search: '',
         inputChanged:false,
         selectedLocation:'',
+        whenClicked: false,
         
       }
      this.onchange = this.onchange.bind(this);
-     
-     this.onclick = this.onclick.bind(this);
+     this.onclick= this.onclick.bind(this);
+   
 
   
 }
@@ -39,15 +40,16 @@ class App extends Component {
       });
       
   }
-    onclick = function(e){
-        this.setState({selectedLocation: e.target.value})
-       console.log(this.state.selectedLocation)
-   } 
+ 
    onchange = function(e){
        this.setState({search: e.target.value})
        console.log(this.state.search)
    }
-   
+   onclick = function(e){
+       this.setState({search: e.target.value})
+       console.log(this.state.search)
+   }
+       
   render() {
       
          
@@ -81,7 +83,8 @@ class App extends Component {
                        }).map(function(locs, index){
                     return (
               
-                <li key={index} value={locs.id} onClick={this.onclick}>
+                <li key={index} value={locs.name} 
+                   onClick={this.onclick}>
                     {locs.name}
                 </li>
                    
@@ -98,7 +101,7 @@ class App extends Component {
                        
                          
             </div>
-                <MapContainer locationList={this.state.items} searchInput={this.inputChanged} searchList={this.state.search}/>
+                <MapContainer locationList={this.state.items} searchInput={this.inputChanged} searchList={this.state.search} clickedList={this.state.selectedLocation} whenClicked={this.state.whenClicked}/>
             </div>
      </div>
     );
