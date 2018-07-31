@@ -23,7 +23,8 @@ export class MapContainer extends Component {
     selectedPlace: {},
       error: null,
       isLoaded: false,
-      items: []
+      items: [],
+     
     }
         
 }
@@ -42,6 +43,7 @@ export class MapContainer extends Component {
         activeMarker: null
       })
     }
+    
   };
   componentDidMount() {    
     foursquare.venues.getVenues(params)
@@ -51,7 +53,7 @@ export class MapContainer extends Component {
   }
 
   render() {
-   var newItems = this.state.items.slice(1, 7);
+   var newItems = this.state.items.slice(1, 8);
 
 
     return (
@@ -72,7 +74,7 @@ export class MapContainer extends Component {
    
       {newItems.map(function(locs){
         
-       return (<Marker onClick={this.onMarkerClick.bind(this)} key={locs.id} name={locs.location.formattedAddress} position={locs.location}/>)
+       return (<Marker onClick={this.onMarkerClick.bind(this)} key={locs.id} name={locs.location.formattedAddress} position={locs.location} animation={this.props.google.maps.Animation.DROP}/>)
      }.bind(this))}
   
         

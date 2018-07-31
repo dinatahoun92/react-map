@@ -35,7 +35,7 @@ class App extends Component {
    }
   render() {
       
-         var newItems = this.state.items.slice(1, 7);
+         var newItems = this.state.items.slice(1, 8);
       var toggle = ()=> {
           document.getElementById("sidenav").classList.toggle("close");
           document.getElementById("sidenav").classList.toggle("open");
