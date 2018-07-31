@@ -22,15 +22,19 @@ class App extends Component {
         search: '',
         
       }
-     this.onchange = this.onchange.bind(this)
+     this.onchange = this.onchange.bind(this);
+       this.setState 
+  
 }
 
   componentDidMount() {    
     foursquare.venues.getVenues(params)
       .then(res=> {
         this.setState({ items: res.response.venues });
+        this.setState({ items:this.state.items.slice(1, 8) });
       });
   }
+      
    onchange = function(e){
        this.setState({search: e.target.value})
        console.log(this.state.search)
