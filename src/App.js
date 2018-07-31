@@ -19,10 +19,12 @@ class App extends Component {
         
     this.state={
         items: [],
-        search: ''
+        search: '',
+        
       }
      this.onchange = this.onchange.bind(this)
 }
+
   componentDidMount() {    
     foursquare.venues.getVenues(params)
       .then(res=> {
@@ -35,7 +37,7 @@ class App extends Component {
    }
   render() {
       
-         var newItems = this.state.items.slice(1, 8);
+         
       var toggle = ()=> {
           document.getElementById("sidenav").classList.toggle("close");
           document.getElementById("sidenav").classList.toggle("open");
@@ -57,7 +59,7 @@ class App extends Component {
                 </input>
                    <ul>
                    
-                  {newItems.filter(locs => {
+                  {this.state.items.filter(locs => {
                            return(
                            locs.name.indexOf(this.state.search) >= 0
                            )
@@ -79,7 +81,7 @@ class App extends Component {
                 <span className="lines" ></span>
                          </div>
             </div>
-                <MapContainer/>
+                <MapContainer locationList={this.state.items}/>
             </div>
      </div>
     );

@@ -2,14 +2,6 @@ import React, { Component } from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import ReactDOM from 'react-dom';
 
-var foursquare = require('react-foursquare')({
-  clientID: 'T2NXZRKH0PH0Y0RTVAMOPKUUU35CNNOUHDH5UHR0QUXAM5QE',
-  clientSecret: 'TBPLP5320XBMDYOH2HA4RHRSEVGL5WYC5L3O5O4OTYD4O1GZ'  
-});
-var params = {
-  "ll": "41.9028,12.4964",
-
-};
 
 
 export class MapContainer extends Component {
@@ -23,7 +15,7 @@ export class MapContainer extends Component {
     selectedPlace: {},
       error: null,
       isLoaded: false,
-      items: [],
+     
      
     }
         
@@ -45,15 +37,10 @@ export class MapContainer extends Component {
     }
     
   };
-  componentDidMount() {    
-    foursquare.venues.getVenues(params)
-      .then(res=> {
-        this.setState({ items: res.response.venues });
-      });
-  }
+  
 
   render() {
-   var newItems = this.state.items.slice(1, 8);
+
 
 
     return (
@@ -72,7 +59,7 @@ export class MapContainer extends Component {
     >
 
    
-      {newItems.map(function(locs){
+      {this.props.locationList.map(function(locs){
         
        return (<Marker onClick={this.onMarkerClick.bind(this)} key={locs.id} name={locs.location.formattedAddress} position={locs.location} animation={this.props.google.maps.Animation.DROP}/>)
      }.bind(this))}
