@@ -20,11 +20,14 @@ class App extends Component {
     this.state={
         items: [],
         search: '',
-        inputChanged:false
+        inputChanged:false,
+        selectedLocation:'',
         
       }
      this.onchange = this.onchange.bind(this);
-        
+     
+     this.onclick = this.onclick.bind(this);
+
   
 }
 
@@ -36,12 +39,15 @@ class App extends Component {
       });
       
   }
-      
+    onclick = function(e){
+        this.setState({selectedLocation: e.target.value})
+       console.log(this.state.selectedLocation)
+   } 
    onchange = function(e){
        this.setState({search: e.target.value})
-       this.setState({inputChanged: true})
        console.log(this.state.search)
    }
+   
   render() {
       
          
@@ -75,13 +81,13 @@ class App extends Component {
                        }).map(function(locs, index){
                     return (
               
-                <li key={index}>
+                <li key={index} value={locs.id} onClick={this.onclick}>
                     {locs.name}
                 </li>
                    
                 
                         )
-     })}
+     },this)}
   </ul>
             </div>
             <div className="main-content" id="MapStyle">
