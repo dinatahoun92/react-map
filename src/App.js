@@ -26,7 +26,6 @@ class App extends Component {
         
       }
      this.onchange = this.onchange.bind(this);
-     this.onclick= this.onclick.bind(this);
    
 
   
@@ -45,11 +44,11 @@ class App extends Component {
        this.setState({search: e.target.value})
        console.log(this.state.search)
    }
-   onclick = function(e){
-       this.setState({search: e.target.value})
-       console.log(this.state.search)
-   }
-       
+  
+      handleClick = (e, locs) => {
+     this.setState({selectedLocation: locs.id})
+    console.log(this.state.selectedLocation);
+} 
   render() {
       
          
@@ -61,8 +60,7 @@ class App extends Component {
           document.getElementById("MapStyle").classList.toggle("MapWidth-full");
          document.getElementById("MapStyle").classList.toggle("MapWidth");
       }
-   
- 
+
     return (
      <div className="container">
            <div className="foursquare">
@@ -84,7 +82,10 @@ class App extends Component {
                     return (
               
                 <li key={index} value={locs.name} 
-                   onClick={this.onclick}>
+                   onClick={((e) => this.handleClick(e, locs))}
+                           
+                           
+                   >
                     {locs.name}
                 </li>
                    
