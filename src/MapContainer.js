@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import ReactDOM from 'react-dom';
 
+
 var markerIcon = require('./markers/Map-Marker.png');
 var markerIconActive = require('./markers/Map-Marker-active.png');
 
@@ -20,7 +21,7 @@ export class MapContainer extends Component {
   
      
     }
-     
+  
 }
  
     onMarkerClick = (props, marker, e) =>
@@ -40,18 +41,22 @@ export class MapContainer extends Component {
     
   };
 
-componentDidMount() {
-(() => {
-    console.log("self invoked function is working");
-    var that = this;
-    if(true){
-    console.log("sd" + this.props.clickedLists)  
-    }
-})();
+componentDidMount(props) {
+
 }
 
   render() {
-console.log(this.props.clickedList)
+     
+(() => {
+    console.log("self invoked function is working");
+
+    if(this.props.clickedList == "4c7ce6fa7a856dcbfe53e3a7"){
+          console.log("whysd" + this.props.clickedList);
+
+    }else{
+        console.log("no")
+    }
+})();
     return (
         <div>
             
