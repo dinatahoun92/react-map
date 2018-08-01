@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import ReactDOM from 'react-dom';
 
-
+var markerIcon = require('./markers/Map-Marker.png');
+var markerIconActive = require('./markers/Map-Marker-active.png');
 
 export class MapContainer extends Component {
 
@@ -13,15 +14,15 @@ export class MapContainer extends Component {
     showingInfoWindow: false,
     activeMarker: {},
     selectedPlace: {},
-      error: null,
-      isLoaded: false,
-     
+    error: null,
+    isLoaded: false,
+    markerIcon: markerIcon,
+  
      
     }
-        
+     
 }
-  
-
+ 
     onMarkerClick = (props, marker, e) =>
     this.setState({
       selectedPlace: props,
@@ -38,11 +39,19 @@ export class MapContainer extends Component {
     }
     
   };
-  
+
+componentDidMount() {
+(() => {
+    console.log("self invoked function is working");
+    var that = this;
+    if(true){
+    console.log("sd" + this.props.clickedLists)  
+    }
+})();
+}
 
   render() {
-
-
+console.log(this.props.clickedList)
     return (
         <div>
             
@@ -62,7 +71,12 @@ export class MapContainer extends Component {
                            locs.name.indexOf(this.props.searchList) >= 0
                            )
                        }).map(function(locs){
-       return (<Marker onClick={this.onMarkerClick.bind(this)} key={locs.id} name={locs.location.formattedAddress} position={locs.location} animation={this.props.google.maps.Animation.DROP}/>)
+       return (<Marker onClick={this.onMarkerClick.bind(this)} key={locs.id} name={locs.location.formattedAddress} position={locs.location} animation={this.props.google.maps.Animation.DROP}
+                   icon={{
+    url: this.state.markerIcon
+  }}
+
+                   />)
      }.bind(this))}
   
         

@@ -48,6 +48,7 @@ class App extends Component {
       handleClick = (e, locs) => {
      this.setState({selectedLocation: locs.id})
     console.log(this.state.selectedLocation);
+  
 } 
   render() {
       
