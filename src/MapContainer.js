@@ -3,8 +3,7 @@ import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import ReactDOM from 'react-dom';
 
 
-var markerIcon = require('./markers/Map-Marker.png');
-var markerIconActive = require('./markers/Map-Marker-active.png');
+
 
 export class MapContainer extends Component {
 
@@ -17,11 +16,12 @@ export class MapContainer extends Component {
     selectedPlace: {},
     error: null,
     isLoaded: false,
-    markerIcon: markerIcon,
+    markerColor: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
+    
   
      
     }
-  
+  this.onSelectClick = this.onSelectClick.bind(this);
 }
  
     onMarkerClick = (props, marker, e) =>
@@ -41,22 +41,20 @@ export class MapContainer extends Component {
     
   };
 
-componentDidMount(props) {
+onSelectClick=()=>{
+    console.log("hey");
+      this.props.locationList.filter(locs => {
+    if(this.props.selectedLocations == locs.id){
+    this.setState({markerColor: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"})
 
+       }
+       }
+       )
 }
 
+
   render() {
-     
-(() => {
-    console.log("self invoked function is working");
 
-    if(this.props.clickedList == "4c7ce6fa7a856dcbfe53e3a7"){
-          console.log("whysd" + this.props.clickedList);
-
-    }else{
-        console.log("no")
-    }
-})();
     return (
         <div>
             
@@ -73,12 +71,13 @@ componentDidMount(props) {
     >
       {this.props.locationList.filter(locs => {
                            return(
-                           locs.name.indexOf(this.props.searchList) >= 0
+                           locs.name.toLowerCase().indexOf(this.props.searchList) >= 0
                            )
                        }).map(function(locs){
        return (<Marker onClick={this.onMarkerClick.bind(this)} key={locs.id} name={locs.location.formattedAddress} position={locs.location} animation={this.props.google.maps.Animation.DROP}
                    icon={{
-    url: this.state.markerIcon
+    url:  this.state.markerColor
+                              
   }}
 
                    />)

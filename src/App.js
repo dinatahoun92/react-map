@@ -12,7 +12,7 @@ var params = {
   "ll": "41.9028,12.4964",
 
 };
-
+var that = this;
 class App extends Component {
    constructor(props){
     super(props);
@@ -26,16 +26,15 @@ class App extends Component {
         
       }
      this.onchange = this.onchange.bind(this);
-   
 
-  
 }
 
   componentDidMount() {    
     foursquare.venues.getVenues(params)
       .then(res=> {
         this.setState({ items: res.response.venues });
-        this.setState({ items:this.state.items.slice(1, 8) });
+        this.setState({ items:this.state.items.slice(5, 11)});
+         
       });
       
   }
@@ -50,8 +49,10 @@ class App extends Component {
     console.log(this.state.selectedLocation);
   
 } 
+    
   render() {
-      
+      console.log(this.state.items);
+    
          
       var toggle = ()=> {
           document.getElementById("sidenav").classList.toggle("close");
@@ -77,7 +78,7 @@ class App extends Component {
                    
                   {this.state.items.filter(locs => {
                            return(
-                           locs.name.indexOf(this.state.search) >= 0
+                           locs.name.toLowerCase().indexOf(this.state.search.toLowerCase()) >= 0
                            )
                        }).map(function(locs, index){
                     return (
@@ -103,7 +104,7 @@ class App extends Component {
                        
                          
             </div>
-                <MapContainer locationList={this.state.items} searchInput={this.inputChanged} searchList={this.state.search} clickedList={this.state.selectedLocation} whenClicked={this.state.whenClicked}/>
+                <MapContainer locationList={this.state.items} searchInput={this.inputChanged} searchList={this.state.search} clickedList={this.state.selectedLocation} whenClicked={this.state.whenClicked} ref="mapContainer"/>
             </div>
      </div>
     );
