@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export class ItemList extends Component {
 
@@ -13,7 +14,9 @@ export class ItemList extends Component {
     }
        onchange = function(e){
        this.setState({search: e.target.value})
-       console.log(this.state.search)
+       console.log(this.state.search);
+           this.props.callback(e.target.value);
+
    }
   
       handleClick = (e, locs) => {
@@ -21,7 +24,7 @@ export class ItemList extends Component {
     console.log(this.state.selectedLocation);
   
 } 
- 
+
      render() {
 
     return (
