@@ -3,6 +3,7 @@ import './App.css';
 import {GoogleApiWrapper} from 'google-maps-react';
 import MapContainer from './MapContainer'
 import ReactDOM from 'react-dom';
+import ItemList from './itemList'
 
 var foursquare = require('react-foursquare')({
   clientID: 'T2NXZRKH0PH0Y0RTVAMOPKUUU35CNNOUHDH5UHR0QUXAM5QE',
@@ -68,34 +69,7 @@ class App extends Component {
            <div className="foursquare">
                Powerd by foursquare
            </div>
-            <div className="sidebar open" id="sidenav">
-                <h2>
-                    Dina's Locations
-                </h2>
-                <input type="text" placeholder="type to filter" value={this.state.search} onChange={this.onchange}>
-                </input>
-                   <ul>
-                   
-                  {this.state.items.filter(locs => {
-                           return(
-                           locs.name.toLowerCase().indexOf(this.state.search.toLowerCase()) >= 0
-                           )
-                       }).map(function(locs, index){
-                    return (
-              
-                <li key={index} value={locs.name} 
-                   onClick={((e) => this.handleClick(e, locs))}
-                           
-                           
-                   >
-                    {locs.name}
-                </li>
-                   
-                
-                        )
-     },this)}
-  </ul>
-            </div>
+<ItemList locationList={this.state.items} searchList={this.state.search}/>
             <div className="main-content" id="MapStyle">
                  <div className="top-bar close-width" id="top-bar">
                      <div className="outerLines" onClick={toggle}>
