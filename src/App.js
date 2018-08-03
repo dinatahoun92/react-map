@@ -26,6 +26,9 @@ class App extends Component {
         search:'',
         onListClicked:'',
         markerColor: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
+         showingInfoWindow: false,
+        activeMarker: {},
+        selectedPlace: {},
 
       }
 
@@ -36,7 +39,7 @@ class App extends Component {
     foursquare.venues.getVenues(params)
       .then(res=> {
         this.setState({ items: res.response.venues });
-        this.setState({ items:this.state.items.slice(5, 11)});
+        this.setState({ items:this.state.items.slice(6, 11)});
          
       });
       
@@ -59,8 +62,23 @@ class App extends Component {
     changeMarkerColor(){
      this.setState({ markerColor: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"});
     }
+        onMarkerClick = (props, marker, e) =>
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true
+    });
+  onMapClicked = (props) => {
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null
+      })
+    }
+    
+  };
   render() {
-      console.log(this.state.items);
+      console.log(this.state.activeMarker +"as");
     
          
       var toggle = ()=> {
@@ -86,7 +104,8 @@ class App extends Component {
                        
                          
             </div>
-                <MapContainer locationList={this.state.items} searchInput={this.inputChanged} searchList={this.state.search} clickedList={this.state.selectedLocation} whenClicked={this.state.whenClicked} ref="mapContainer" onSelectClick={this.fromMapContainer.bind(this)} markerColor={this.state.markerColor}/>
+                <MapContainer locationList={this.state.items} searchInput={this.inputChanged} searchList={this.state.search} clickedList={this.state.selectedLocation} whenClicked={this.state.whenClicked} ref="mapContainer" onSelectClick={this.fromMapContainer.bind(this)} markerColor={this.state.markerColor}
+                showingInfoWindow={this.state.showingInfoWindow} activeMarker={this.state.activeMarker} selectedPlace ={this.state.selectedPlace} onMarkerClick={this.onMarkerClick.bind(this)} onMapClicked ={this.onMapClicked.bind(this)}/>
             </div>
      </div>
     );

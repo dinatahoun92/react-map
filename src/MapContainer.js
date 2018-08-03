@@ -11,9 +11,6 @@ export class MapContainer extends Component {
     super(props);
         
     this.state={
-    showingInfoWindow: false,
-    activeMarker: {},
-    selectedPlace: {},
     error: null,
     isLoaded: false,
     
@@ -23,22 +20,8 @@ export class MapContainer extends Component {
   this.onSelectClick = this.onSelectClick.bind(this);
 }
  
-    onMarkerClick = (props, marker, e) =>
-    this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
-      showingInfoWindow: true
-    });
 
-  onMapClicked = (props) => {
-    if (this.state.showingInfoWindow) {
-      this.setState({
-        showingInfoWindow: false,
-        activeMarker: null
-      })
-    }
-    
-  };
+
 
 onSelectClick=()=>{
     console.log("hey");
@@ -73,7 +56,7 @@ console.log(this.props.clickedList + "list")
                            locs.name.toLowerCase().indexOf(this.props.searchList) >= 0
                            )
                        }).map(function(locs){
-       return (<Marker onClick={this.onMarkerClick.bind(this)} key={locs.id} name={locs.location.formattedAddress} position={locs.location} animation={this.props.google.maps.Animation.DROP}
+       return (<Marker onClick={this.props.onMarkerClick} key={locs.id} name={locs.location.formattedAddress} position={locs.location}
                    icon={{
     url:  this.props.markerColor
                               
@@ -85,10 +68,10 @@ console.log(this.props.clickedList + "list")
         
     
      <InfoWindow
-          marker={this.state.activeMarker}
-          visible={this.state.showingInfoWindow}>
+          marker={this.props.activeMarker}
+          visible={this.props.showingInfoWindow}>
             <div>
-              <h1>{this.state.selectedPlace.name}</h1>
+              <h1>{this.props.selectedPlace.name}</h1>
             </div>
         </InfoWindow>
     </Map>
