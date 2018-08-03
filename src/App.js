@@ -24,7 +24,9 @@ class App extends Component {
         selectedLocation:'',
         whenClicked: false,
         search:'',
-        
+        onListClicked:'',
+        markerColor: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
+
       }
 
 
@@ -49,6 +51,14 @@ class App extends Component {
     selectedLocation : params
   })
 }
+    fromMapContainer(params) {
+  this.setState({
+    onListClicked : params
+  })
+}
+    changeMarkerColor(){
+     this.setState({ markerColor: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"});
+    }
   render() {
       console.log(this.state.items);
     
@@ -67,7 +77,7 @@ class App extends Component {
            <div className="foursquare">
                Powerd by foursquare
            </div>
-<ItemList getClickedLocations= {this.getClickedLocations.bind(this)}locationList={this.state.items} searchList={this.state.search} callback={this.formItemList.bind(this)}/>
+<ItemList getClickedLocations={this.getClickedLocations.bind(this)} locationList={this.state.items} searchList={this.state.search} callback={this.formItemList.bind(this)} onListClicked={this.state.onListClicked} changeMarkerColor={this.changeMarkerColor.bind(this)}/>
             <div className="main-content" id="MapStyle">
                  <div className="top-bar close-width" id="top-bar">
                      <div className="outerLines" onClick={toggle}>
@@ -76,7 +86,7 @@ class App extends Component {
                        
                          
             </div>
-                <MapContainer locationList={this.state.items} searchInput={this.inputChanged} searchList={this.state.search} clickedList={this.state.selectedLocation} whenClicked={this.state.whenClicked} ref="mapContainer"/>
+                <MapContainer locationList={this.state.items} searchInput={this.inputChanged} searchList={this.state.search} clickedList={this.state.selectedLocation} whenClicked={this.state.whenClicked} ref="mapContainer" onSelectClick={this.fromMapContainer.bind(this)} markerColor={this.state.markerColor}/>
             </div>
      </div>
     );

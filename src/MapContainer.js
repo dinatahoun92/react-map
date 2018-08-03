@@ -16,7 +16,6 @@ export class MapContainer extends Component {
     selectedPlace: {},
     error: null,
     isLoaded: false,
-    markerColor: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
     
   
      
@@ -76,7 +75,7 @@ console.log(this.props.clickedList + "list")
                        }).map(function(locs){
        return (<Marker onClick={this.onMarkerClick.bind(this)} key={locs.id} name={locs.location.formattedAddress} position={locs.location} animation={this.props.google.maps.Animation.DROP}
                    icon={{
-    url:  this.state.markerColor
+    url:  this.props.markerColor
                               
   }}
 
