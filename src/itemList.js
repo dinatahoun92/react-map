@@ -22,7 +22,8 @@ export class ItemList extends Component {
       handleClick = (e, locs) => {
      this.setState({selectedLocation: locs.id})
     console.log(this.state.selectedLocation);
-  
+  this.props.getClickedLocations(this.state.selectedLocation);
+
 } 
 
      render() {

@@ -23,7 +23,8 @@ class App extends Component {
         inputChanged:false,
         selectedLocation:'',
         whenClicked: false,
-        search:''
+        search:'',
+        
       }
 
 
@@ -43,7 +44,11 @@ class App extends Component {
     search : params
   })
 }
-   
+   getClickedLocations(params) {
+  this.setState({
+    selectedLocation : params
+  })
+}
   render() {
       console.log(this.state.items);
     
@@ -62,7 +67,7 @@ class App extends Component {
            <div className="foursquare">
                Powerd by foursquare
            </div>
-<ItemList locationList={this.state.items} searchList={this.state.search} callback={this.formItemList.bind(this)}/>
+<ItemList getClickedLocations= {this.getClickedLocations.bind(this)}locationList={this.state.items} searchList={this.state.search} callback={this.formItemList.bind(this)}/>
             <div className="main-content" id="MapStyle">
                  <div className="top-bar close-width" id="top-bar">
                      <div className="outerLines" onClick={toggle}>

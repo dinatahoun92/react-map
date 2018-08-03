@@ -54,7 +54,7 @@ onSelectClick=()=>{
 
 
   render() {
-
+console.log(this.props.clickedList + "list")
     return (
         <div>
             
