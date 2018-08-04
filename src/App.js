@@ -78,7 +78,7 @@ class App extends Component {
     
   };
   render() {
-      console.log(this.state.activeMarker +"as");
+      console.log(document.getElementsByClassName("gmnoprint") +"clasname")
     
          
       var toggle = ()=> {

@@ -21,14 +21,14 @@ export class ItemList extends Component {
   
       handleClick = (e, locs) => {
      this.setState({selectedLocation: locs.id})
-    console.log(this.state.selectedLocation);
+         
+    console.log(this.state.selectedLocation + "dina");
   this.props.getClickedLocations(this.state.selectedLocation);
   this.props.changeMarkerColor();
-
+          
 } 
 
      render() {
-
     return (
                     <div className="sidebar open" id="sidenav">
                 <h2>

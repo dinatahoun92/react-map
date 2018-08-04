@@ -3,7 +3,7 @@ import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import ReactDOM from 'react-dom';
 
 
-
+var that = this;
 
 export class MapContainer extends Component {
 
@@ -36,6 +36,7 @@ onSelectClick=()=>{
 
 
   render() {
+      var check = this.props.clickedList;
 console.log(this.props.clickedList + "list")
     return (
         <div>
@@ -56,15 +57,27 @@ console.log(this.props.clickedList + "list")
                            locs.name.toLowerCase().indexOf(this.props.searchList) >= 0
                            )
                        }).map(function(locs){
-       return (<Marker onClick={this.props.onMarkerClick} key={locs.id} name={locs.location.formattedAddress} position={locs.location}
+       if(check==locs.id){
+       return (<Marker onClick={this.props.onMarkerClick} title ={locs.name} id={locs.id} key={locs.id} name={locs.location.formattedAddress} position={locs.location}
                    icon={{
-    url:  this.props.markerColor
+    url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
                               
   }}
 
                    />)
+       }else{
+              return (<Marker onClick={this.props.onMarkerClick} title ={locs.name} id={locs.id} key={locs.id} name={locs.location.formattedAddress} position={locs.location}
+                   icon={{
+    url:  "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+                              
+  }}
+
+                   />)
+       }
+        
      }.bind(this))}
   
+    
         
     
      <InfoWindow
