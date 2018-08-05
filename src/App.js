@@ -29,7 +29,8 @@ class App extends Component {
          showingInfoWindow: false,
         activeMarker: {},
         selectedPlace: {},
-
+        infoDiv:"click on location list on sidebar to get the address",
+        selectedAddress:'click on places list on sidebar to get address'
       }
 
 
@@ -68,6 +69,12 @@ class App extends Component {
       activeMarker: marker,
       showingInfoWindow: true
     });
+
+getLocAddress(params) {
+  this.setState({
+    selectedAddress : params
+  })
+}
   onMapClicked = (props) => {
     if (this.state.showingInfoWindow) {
       this.setState({
@@ -79,7 +86,7 @@ class App extends Component {
   };
   render() {
       console.log(document.getElementsByClassName("gmnoprint") +"clasname")
-    
+    console.log("Selectedaddrss"+this.state.selectedAddress)
          
       var toggle = ()=> {
           document.getElementById("sidenav").classList.toggle("close");
@@ -95,7 +102,7 @@ class App extends Component {
            <div className="foursquare">
                Powerd by foursquare
            </div>
-<ItemList getClickedLocations={this.getClickedLocations.bind(this)} locationList={this.state.items} searchList={this.state.search} callback={this.formItemList.bind(this)} onListClicked={this.state.onListClicked} changeMarkerColor={this.changeMarkerColor.bind(this)}/>
+<ItemList getClickedLocations={this.getClickedLocations.bind(this)} locationList={this.state.items} searchList={this.state.search} callback={this.formItemList.bind(this)} onListClicked={this.state.onListClicked} changeMarkerColor={this.changeMarkerColor.bind(this)} getLocAddress={this.getLocAddress.bind(this)}/>
             <div className="main-content" id="MapStyle">
                  <div className="top-bar close-width" id="top-bar">
                      <div className="outerLines" onClick={toggle}>
@@ -104,6 +111,11 @@ class App extends Component {
                        
                          
             </div>
+               <div className="infoDiv">
+                   <p>
+                       {this.state.selectedAddress}
+                   </p>
+               </div>
                 <MapContainer locationList={this.state.items} searchInput={this.inputChanged} searchList={this.state.search} clickedList={this.state.selectedLocation} whenClicked={this.state.whenClicked} ref="mapContainer" onSelectClick={this.fromMapContainer.bind(this)} markerColor={this.state.markerColor}
                 showingInfoWindow={this.state.showingInfoWindow} activeMarker={this.state.activeMarker} selectedPlace ={this.state.selectedPlace} onMarkerClick={this.onMarkerClick.bind(this)} onMapClicked ={this.onMapClicked.bind(this)}/>
             </div>

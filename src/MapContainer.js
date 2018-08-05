@@ -58,7 +58,7 @@ console.log(this.props.clickedList + "list")
                            )
                        }).map(function(locs){
        if(check==locs.id){
-       return (<Marker onClick={this.props.onMarkerClick} title ={locs.name} id={locs.id} key={locs.id} name={locs.location.formattedAddress} position={locs.location}
+       return (<Marker animation={this.props.google.maps.Animation.DROP} onClick={this.props.onMarkerClick} title ={locs.name} id={locs.id} key={locs.id} name={locs.location.formattedAddress} position={locs.location}
                    icon={{
     url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
                               

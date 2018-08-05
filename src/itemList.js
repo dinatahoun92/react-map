@@ -8,6 +8,8 @@ export class ItemList extends Component {
         
     this.state={
          search: '',
+        selectedAddress:'',
+        selectedLocation:''
     }
          this.onchange = this.onchange.bind(this);
 
@@ -21,14 +23,17 @@ export class ItemList extends Component {
   
       handleClick = (e, locs) => {
      this.setState({selectedLocation: locs.id})
-         
+    this.setState({selectedAddress: locs.location.formattedAddress})
     console.log(this.state.selectedLocation + "dina");
+          console.log(this.state.selectedAddress + "dina2");
   this.props.getClickedLocations(this.state.selectedLocation);
-  this.props.changeMarkerColor();
+  this.props.getLocAddress(this.state.selectedAddress);
+
           
 } 
-
-     render() {
+    render() {
+         console.log(this.state.selectedAddress +"address");
+          console.log(this.state.selectedLocation +"idsa");
     return (
                     <div className="sidebar open" id="sidenav">
                 <h2>
