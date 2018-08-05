@@ -8,7 +8,7 @@ export class ItemList extends Component {
         
     this.state={
          search: '',
-        selectedAddress:'',
+        selectedAddress:'click on places list on sidebar to get address',
         selectedLocation:''
     }
          this.onchange = this.onchange.bind(this);
@@ -22,15 +22,21 @@ export class ItemList extends Component {
    }
   
       handleClick = (e, locs) => {
-     this.setState({selectedLocation: locs.id})
-    this.setState({selectedAddress: locs.location.formattedAddress})
+     this.setState({selectedLocation: locs.id}, () => {
+  this.props.getClickedLocations(this.state.selectedLocation);
+    });
+          
+    this.setState({selectedAddress: locs.location.formattedAddress}, () => {
+    this.props.getLocAddress(this.state.selectedAddress);
+
+    },this);
     console.log(this.state.selectedLocation + "dina");
           console.log(this.state.selectedAddress + "dina2");
-  this.props.getClickedLocations(this.state.selectedLocation);
-  this.props.getLocAddress(this.state.selectedAddress);
 
           
 } 
+        
+ 
     render() {
          console.log(this.state.selectedAddress +"address");
           console.log(this.state.selectedLocation +"idsa");
