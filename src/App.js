@@ -34,7 +34,7 @@ class App extends Component {
    
   }
       
-// Fetching Foursquare API
+//FetchFoursquare API
   getLocation = () => {
     fetch('https://api.foursquare.com/v2/venues/search?query=&ll=41.9028,12.4964&limit=10&client_id&client_secretO&v=20180720&oauth_token=ETMR1KX3COLMBGTTN1YAEMA1W2QADJB4E4COOYFHGEIE5ROD&v=20180805')
     .then(res => res.json())
@@ -54,37 +54,42 @@ class App extends Component {
     return response;
   }
   }
-
+//get search state from listitem to mapcontainer
  formItemList(params) {
   this.setState({
     search : params
   })
 }
+//get selectedlocation from listItem to mapcontainer
    getClickedLocations(params) {
   this.setState({
     selectedLocation : params
   })
 }
+//get fun from mapcontainer
     fromMapContainer(params) {
   this.setState({
     onListClicked : params
   })
 }
+//change icon color
     changeMarkerColor(){
      this.setState({ markerColor: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"});
     }
+//display infowindow when click on marker
         onMarkerClick = (props, marker, e) =>
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
       showingInfoWindow: true
     });
-
+//get location address from listitem
 getLocAddress(params) {
   this.setState({
     selectedAddress : params
   })
 }
+//handle close infowindow
   onMapClicked = (props) => {
     if (this.state.showingInfoWindow) {
       this.setState({
@@ -116,7 +121,7 @@ getLocAddress(params) {
             <div className="main-content" id="MapStyle">
                  <div className="top-bar close-width" id="top-bar">
                      
-                     <a href="#" aria-role="button" className="outerLines" onClick={toggle} aria-role="button">
+                     <a href="#" aria-labelledby="button" className="outerLines" onClick={toggle} >
                     
                 <span className="lines" ></span>
                        
@@ -136,7 +141,6 @@ getLocAddress(params) {
               <p className="offline">There is an Error in google maps api.. so it can't be displayed at this moment</p>
               
             </div>)
-
           }
             </div>
      </div>
@@ -144,4 +148,3 @@ getLocAddress(params) {
   }
 }
 export default App;
-

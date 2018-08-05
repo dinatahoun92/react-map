@@ -14,6 +14,7 @@ export class ItemList extends Component {
          this.onchange = this.onchange.bind(this);
 
     }
+    //get value of input
        onchange = function(e){
        this.setState({search: e.target.value})
        console.log(this.state.search);
@@ -21,6 +22,7 @@ export class ItemList extends Component {
 
    }
   
+       //get id of clicked location
       handleClick = (e, locs) => {
      this.setState({selectedLocation: locs.id}, () => {
   this.props.getClickedLocations(this.state.selectedLocation);
@@ -36,8 +38,7 @@ export class ItemList extends Component {
         
  
     render() {
-         console.log(this.state.selectedAddress +"address");
-          console.log(this.state.selectedLocation +"idsa");
+     
     return (
                     <div className="sidebar open" id="sidenav">
                 <h2>
@@ -53,7 +54,7 @@ export class ItemList extends Component {
                            )
                        }).map(function(locs, index){
                     return (
-              <a href="#">
+              <a href="#" key={index}>
                 <li key={index} value={locs.name} 
                    onClick={((e) => this.handleClick(e, locs))}
                            

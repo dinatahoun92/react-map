@@ -24,7 +24,6 @@ export class MapContainer extends Component {
 
 
 onSelectClick=()=>{
-    console.log("hey");
       this.props.locationList.filter(locs => {
     if(this.props.selectedLocations == locs.id){
     this.setState({markerColor: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"})
@@ -37,7 +36,6 @@ onSelectClick=()=>{
 
   render() {
       var check = this.props.clickedList;
-console.log(this.props.clickedList + "list")
     return (
         <div role="application" className="mapContainer">
             
@@ -85,7 +83,7 @@ console.log(this.props.clickedList + "list")
           marker={this.props.activeMarker}
           visible={this.props.showingInfoWindow}>
             <div>
-              <h2 className="header">{this.props.selectedPlace.name}</h2>
+              <p className="header">{this.props.selectedPlace.name}</p>
             </div>
         </InfoWindow>
     </Map>
