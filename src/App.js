@@ -33,6 +33,7 @@ class App extends Component {
     this.getLocation()
    
   }
+      
 // Fetching Foursquare API
   getLocation = () => {
     fetch('https://api.foursquare.com/v2/venues/search?query=&ll=41.9028,12.4964&limit=10&client_id&client_secretO&v=20180720&oauth_token=ETMR1KX3COLMBGTTN1YAEMA1W2QADJB4E4COOYFHGEIE5ROD&v=20180805')
@@ -40,7 +41,18 @@ class App extends Component {
     .then(items => {
         this.setState({ items: items.response.venues });
       })
-    .catch(error => this.onGetLocationsError('', error));
+    .catch((error) => {
+      alert('sorry,there is an error in fetcging data from foursquare api  ')
+      
+    })
+      
+          function handleErrors(response) {
+    if (!response.ok) {
+      //console.log('response status Text',  response)
+        throw Error(response.statusText);
+    }
+    return response;
+  }
   }
 
  formItemList(params) {
@@ -114,8 +126,16 @@ getLocAddress(params) {
                        {this.state.selectedAddress}
                    </p>
                </div>
-                <MapContainer locationList={this.state.items} searchInput={this.inputChanged} searchList={this.state.search} clickedList={this.state.selectedLocation} whenClicked={this.state.whenClicked} ref="mapContainer" onSelectClick={this.fromMapContainer.bind(this)} markerColor={this.state.markerColor}
-                showingInfoWindow={this.state.showingInfoWindow} activeMarker={this.state.activeMarker} selectedPlace ={this.state.selectedPlace} onMarkerClick={this.onMarkerClick.bind(this)} onMapClicked ={this.onMapClicked.bind(this)}/>
+                
+                {(navigator.onLine) && <MapContainer locationList={this.state.items} searchInput={this.inputChanged} searchList={this.state.search} clickedList={this.state.selectedLocation} whenClicked={this.state.whenClicked} ref="mapContainer" onSelectClick={this.fromMapContainer.bind(this)} markerColor={this.state.markerColor}
+                showingInfoWindow={this.state.showingInfoWindow} activeMarker={this.state.activeMarker} selectedPlace ={this.state.selectedPlace} onMarkerClick={this.onMarkerClick.bind(this)} onMapClicked ={this.onMapClicked.bind(this)}/>}
+                 { (!navigator.onLine) && 
+            (<div>
+              <p className="offline">There is an Error in google maps api.. so it can't be displayed at this moment</p>
+              
+            </div>)
+
+          }
             </div>
      </div>
     );
