@@ -5,14 +5,8 @@ import MapContainer from './MapContainer'
 import ReactDOM from 'react-dom';
 import ItemList from './itemList'
 
-var foursquare = require('react-foursquare')({
-  clientID: 'T2NXZRKH0PH0Y0RTVAMOPKUUU35CNNOUHDH5UHR0QUXAM5QE',
-  clientSecret: 'TBPLP5320XBMDYOH2HA4RHRSEVGL5WYC5L3O5O4OTYD4O1GZ'  
-});
-var params = {
-  "ll": "41.9028,12.4964",
 
-};
+
 var that = this;
 class App extends Component {
    constructor(props){
@@ -35,16 +29,20 @@ class App extends Component {
 
 
 }
-
-  componentDidMount() {    
-    foursquare.venues.getVenues(params)
-      .then(res=> {
-        this.setState({ items: res.response.venues });
-        this.setState({ items:this.state.items.slice(6, 11)});
-         
-      });
-      
+      componentDidMount = () => {
+    this.getLocation()
+   
   }
+// Fetching Foursquare API
+  getLocation = () => {
+    fetch('https://api.foursquare.com/v2/venues/search?query=&ll=41.9028,12.4964&limit=10&client_id&client_secretO&v=20180720&oauth_token=ETMR1KX3COLMBGTTN1YAEMA1W2QADJB4E4COOYFHGEIE5ROD&v=20180805')
+    .then(res => res.json())
+    .then(items => {
+        this.setState({ items: items.response.venues });
+      })
+    .catch(error => this.onGetLocationsError('', error));
+  }
+
  formItemList(params) {
   this.setState({
     search : params
