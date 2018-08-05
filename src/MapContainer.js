@@ -39,7 +39,7 @@ onSelectClick=()=>{
       var check = this.props.clickedList;
 console.log(this.props.clickedList + "list")
     return (
-        <div>
+        <div role="application" className="mapContainer">
             
            
         
@@ -49,7 +49,8 @@ console.log(this.props.clickedList + "list")
             zoom={16}
             initialCenter={{
             lat: 41.9028,
-            lng: 12.4964
+            lng: 12.4964,
+            
         }}
     >
       {this.props.locationList.filter(locs => {
@@ -58,7 +59,7 @@ console.log(this.props.clickedList + "list")
                            )
                        }).map(function(locs){
        if(check==locs.id){
-       return (<Marker animation={this.props.google.maps.Animation.DROP} onClick={this.props.onMarkerClick} title ={locs.name} id={locs.id} key={locs.id} name={locs.location.formattedAddress} position={locs.location}
+       return (<Marker  onClick={this.props.onMarkerClick} title ={locs.name} id={locs.id} key={locs.id} name={locs.location.formattedAddress} position={locs.location}
                    icon={{
     url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
                               
@@ -84,7 +85,7 @@ console.log(this.props.clickedList + "list")
           marker={this.props.activeMarker}
           visible={this.props.showingInfoWindow}>
             <div>
-              <h1>{this.props.selectedPlace.name}</h1>
+              <h2 className="header">{this.props.selectedPlace.name}</h2>
             </div>
         </InfoWindow>
     </Map>

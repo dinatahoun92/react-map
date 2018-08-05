@@ -30,9 +30,7 @@ export class ItemList extends Component {
     this.props.getLocAddress(this.state.selectedAddress);
 
     },this);
-    console.log(this.state.selectedLocation + "dina");
-          console.log(this.state.selectedAddress + "dina2");
-
+  
           
 } 
         
@@ -45,7 +43,7 @@ export class ItemList extends Component {
                 <h2>
                     Dina's Locations
                 </h2>
-                <input type="text" placeholder="type to filter" value={this.state.search} onChange={this.onchange}>
+                <input  aria-label="Search" type="text" placeholder="type to filter" value={this.state.search} onChange={this.onchange}>
                 </input>
                    <ul>
                    
@@ -55,15 +53,17 @@ export class ItemList extends Component {
                            )
                        }).map(function(locs, index){
                     return (
-              
+              <a href="#">
                 <li key={index} value={locs.name} 
                    onClick={((e) => this.handleClick(e, locs))}
                            
                            
                    >
+                           
                     {locs.name}
+                               
                 </li>
-                   
+                   </a>
                 
                         )
      },this)}
