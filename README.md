@@ -1,6 +1,6 @@
-# neighbourhood Map react 
+# Neighbourhood Map react 
 
-## about this app
+## About this app
 It is made as a part of udacity front end developer nano degree as the last project 
 
 ## How to install it  
@@ -17,5 +17,6 @@ It is made as a part of udacity front end developer nano degree as the last proj
  1. Google maps api
  2. Google maps react 
  3. Foursquare Api 
+ 4- create react app
  
  
