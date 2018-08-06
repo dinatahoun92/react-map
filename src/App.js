@@ -37,19 +37,22 @@ class App extends Component {
 //FetchFoursquare API
   getLocation = () => {
     fetch('https://api.foursquare.com/v2/venues/search?query=&ll=41.9028,12.4964&limit=10&client_id&client_secretO&v=20180720&oauth_token=ETMR1KX3COLMBGTTN1YAEMA1W2QADJB4E4COOYFHGEIE5ROD&v=20180805')
+    .then(handleErrors)
     .then(res => res.json())
     .then(items => {
         this.setState({ items: items.response.venues});
       })
     .catch((error) => {
       alert('sorry,there is an error in fetching data from foursquare api  ')
-      console.log(error);
+      
     })
       
           function handleErrors(response) {
     if (!response.ok) {
-      //console.log('response status Text',  response)
         throw Error(response.statusText);
+
+
+
     }
     return response;
   }
