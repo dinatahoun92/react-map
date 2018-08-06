@@ -39,7 +39,7 @@ class App extends Component {
     fetch('https://api.foursquare.com/v2/venues/search?query=&ll=41.9028,12.4964&limit=10&client_id&client_secretO&v=20180720&oauth_token=ETMR1KX3COLMBGTTN1YAEMA1W2QADJB4E4COOYFHGEIE5ROD&v=20180805')
     .then(res => res.json())
     .then(items => {
-        this.setState({ items: items.response.venues.slice(5, 11) });
+        this.setState({ items: items.response.venues});
       })
     .catch((error) => {
       alert('sorry,there is an error in fetcging data from foursquare api  ')
@@ -115,7 +115,9 @@ getLocAddress(params) {
     return (
      <div className="container">
            <div className="foursquare">
+               <a href="https://developer.foursquare.com/">
                Powerd by foursquare
+                   </a>
            </div>
 <ItemList getClickedLocations={this.getClickedLocations.bind(this)} locationList={this.state.items} searchList={this.state.search} callback={this.formItemList.bind(this)} onListClicked={this.state.onListClicked} changeMarkerColor={this.changeMarkerColor.bind(this)} getLocAddress={this.getLocAddress.bind(this)}/>
             <div className="main-content" id="MapStyle">

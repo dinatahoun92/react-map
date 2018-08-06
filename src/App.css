@@ -176,9 +176,11 @@ ul li:hover{
 }
 /*end infoDiv*/
 /*start mapcontainer*/
+@media screen and  (min-width: 801px){
 .MapWidth{
     width: calc(100% - 250px) !important;
     height: calc(100% - 100px) !important
+}
 }
 a{
     color: #fff;
@@ -187,4 +189,5 @@ a{
 input:focus{
  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
 }
+
 /*end mapContainer*/

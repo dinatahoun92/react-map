@@ -93,5 +93,5 @@ onSelectClick=()=>{
 }
  
 export default GoogleApiWrapper({
-  apiKey: "AIzaSyCHVAaW8bMWP0RrjNtJlKxa98pDD0qUGkA"
+  apiKey: "AIzaSyCUbNYwMuhvP5zTb6K8v_X2a-qk8jXw-KI"
 })(MapContainer)
