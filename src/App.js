@@ -42,8 +42,8 @@ class App extends Component {
         this.setState({ items: items.response.venues});
       })
     .catch((error) => {
-      alert('sorry,there is an error in fetcging data from foursquare api  ')
-      
+      alert('sorry,there is an error in fetching data from foursquare api  ')
+      console.log(error);
     })
       
           function handleErrors(response) {
